@@ -32,12 +32,10 @@ version                    "${file("VERSION").text.trim()}" // read from require
 description                = "Elastic Integration filter"
 // ===========================================================================
 
-java {
-    sourceCompatibility = 17
-    targetCompatibility = 17
-}
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    sourceCompatibility = 17
+    targetCompatibility = 17
 }
 
 repositories {
