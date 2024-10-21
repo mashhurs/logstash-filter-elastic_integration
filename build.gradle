@@ -32,10 +32,16 @@ version                    "${file("VERSION").text.trim()}" // read from require
 description                = "Elastic Integration filter"
 // ===========================================================================
 
+def JAVA_VERSION = 17
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(JAVA_VERSION))
+    }
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = 17
-    targetCompatibility = 17
 }
 
 repositories {
