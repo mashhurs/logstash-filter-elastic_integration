@@ -1,3 +1,20 @@
+## 8.19.1
+  - Add `terminate` processor support [#345](https://github.com/elastic/logstash-filter-elastic_integration/pull/345)
+
+## 8.19.0
+  - Introduces `proxy` param to support proxy [#319](https://github.com/elastic/logstash-filter-elastic_integration/pull/319)
+  - Embeds Ingest Node components from Elasticsearch 8.19
+
+## 8.18.2
+  - Add `terminate` processor support [#345](https://github.com/elastic/logstash-filter-elastic_integration/pull/345)
+
+## 8.18.1
+  - Introduces `proxy` param to support proxy [#318](https://github.com/elastic/logstash-filter-elastic_integration/pull/318)
+
+## 8.18.0
+  - Aligns with stack major and minor versions, no functional changes [#285](https://github.com/elastic/logstash-filter-elastic_integration/pull/285)
+  - Embeds Ingest Node components from Elasticsearch 8.18
+
 ## 8.17.1
   - Provides a guidance in logs when plugin version mismatches with connected Elasticsearch `major.minor` version [#255](https://github.com/elastic/logstash-filter-elastic_integration/pull/255)
   - Embeds Ingest Node components from Elasticsearch 8.17
