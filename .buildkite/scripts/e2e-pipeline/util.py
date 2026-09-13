@@ -44,8 +44,8 @@ def show_containers_logs(container_prefixes):
         print(f"{separator}\n")
 
 def run_or_raise_error(commands: list, error_message):
-    result = subprocess.run(commands, universal_newlines=True, stdout=subprocess.PIPE)
+    result = subprocess.run(commands, universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if result.returncode != 0:
-        full_error_message = (error_message + ", output: " + result.stdout.decode('utf-8')) \
+        full_error_message = (error_message + ", output: " + result.stdout) \
             if result.stdout else error_message
         raise Exception(f"{full_error_message}")

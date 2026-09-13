@@ -4,6 +4,7 @@
 
 import argparse
 import os
+import traceback
 from bootstrap import Bootstrap
 from plugin_test import PluginTest
 import util
@@ -27,9 +28,9 @@ class BootstrapContextManager:
         self.bootstrap.run_elastic_stack(self.skip_setup)
         return self.bootstrap
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, tb):
         if exc_type is not None:
-            traceback.print_exception(exc_type, exc_value, traceback)
+            traceback.print_exception(exc_type, exc_value, tb)
 
         if self.bootstrap:
             self.bootstrap.stop_elastic_stack()
