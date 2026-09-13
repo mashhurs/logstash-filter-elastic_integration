@@ -53,6 +53,7 @@ def main(skip_setup=False, integrations=[]):
                 failed_packages.append(package)
 
         util.show_containers_logs(["logstash-", "elasticsearch-", "elastic-agent-"])
+        util.show_elastic_package_logs(working_dir)
 
     if len(failed_packages) > 0:
         raise Exception(f"Following packages failed: {failed_packages}")

@@ -1,4 +1,5 @@
 import docker
+import glob
 import os
 import requests
 import subprocess
@@ -42,6 +43,31 @@ def show_containers_logs(container_prefixes):
         for log_line in container_logs.splitlines():
             print(f"  {log_line}")
         print(f"{separator}\n")
+
+def show_elastic_package_logs(working_dir: str):
+    """Print log files written by elastic-package for independent test agent containers."""
+    log_dir = os.path.join(working_dir, "integrations", "build", "container-logs")
+    if not os.path.isdir(log_dir):
+        print(f"No elastic-package container log directory found at: {log_dir}")
+        return
+
+    log_files = sorted(glob.glob(os.path.join(log_dir, "*.log")))
+    if not log_files:
+        print(f"No log files found in: {log_dir}")
+        return
+
+    for log_file in log_files:
+        separator = "=" * 80
+        print(f"\n{separator}")
+        print(f"elastic-package container log: {os.path.basename(log_file)}")
+        print(separator)
+        try:
+            with open(log_file, "r", errors="replace") as f:
+                for line in f:
+                    print(f"  {line}", end="")
+        except Exception as e:
+            print(f"  Could not read log file: {e}")
+        print(f"\n{separator}\n")
 
 def run_or_raise_error(commands: list, error_message):
     result = subprocess.run(commands, universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
